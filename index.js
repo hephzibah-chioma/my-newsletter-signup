@@ -2,6 +2,8 @@ const express = require("express");
 const https = require("https");
 const bodyParser = require("body-parser");
 const path = require("path");
+require("dotenv").config({path: `${__dirname}/.env`});
+export const apiKey = process.env["apiKey"];
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -34,7 +36,7 @@ app.post("/", function(req, res) {
     const URL = "https://us20.api.mailchimp.com/3.0/lists/91679df4e7";
     const options = {
         method: "POST",
-        auth: "chikey:e20099c95038a101f7a42f6601ea7670-us21"
+        auth: `chikey:${apiKey}`
     }
     const request = https.request(URL, options, function(response) {
         let statusCode = response.statusCode;
@@ -58,6 +60,3 @@ app.post("/failure", function(req, res) {
 app.listen(PORT, function() {
     console.log("Server is running.");
 })
-
-// const apiKey = "d58f51bc5cbffdb41ef741c89454e27d-us21"
-// const listID = "91679df4e7"
