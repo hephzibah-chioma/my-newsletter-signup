@@ -3,7 +3,7 @@ const https = require("https");
 const bodyParser = require("body-parser");
 const path = require("path");
 require("dotenv").config({path: `${__dirname}/.env`});
-export const apiKey = process.env["apiKey"];
+const apiKey = process.env["apiKey"];
 
 const app = express();
 const PORT = process.env.PORT || 3000;
